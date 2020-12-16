@@ -19,8 +19,44 @@
     <div id="formId" class="form-content">
         <form class="form" action="#">
             <div class="form-header">
-                <div class="form-text">Person Address Form</div>
-                <a class="cancel-button button"><img src="../assets/images/cancel.jpeg" alt="logo"></a>
+                <div class="form-header-text">Person Address Form</div>
+                <a class="cancel-button"><img src="../assets/images/cancel.jpeg" alt="logo"></a>
+            </div>
+            <div class="form-body">
+                <div class="row-content">
+                    <label class="label text" for="notes">Full Name</label>
+                    <div><input class="input" type="text" id="name" name="name" required></div>
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="notes">Phone Number</label>
+                    <input class="input" type="text" id="name" name="phone-number" required>
+                </div>            
+                <div class="row-content">
+                    <label class="label text" for="notes">Address</label>
+                    <textarea class="input" id="address" name="address" style="height: 80px;" required></textarea> 
+                </div>
+                <div class="city-state-zipcode">
+                    <div>
+                        <label class="label text" for="city">City</label>
+                        <select id="city" class="city" name="city" required>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Chennai">Chennai</option>
+                        </select>    
+                    </div>
+                    <div>
+                        <label class="label text" for="state">State</label>
+                        <select id="state" class="state" name="state" required>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Maharastra">Maharastra</option>
+                            <option value="Tamilnadu">Tamilnadu</option>
+                        </select>    
+                    </div>
+                    <div>
+                        <label class="label text" for="zipcode">Zipcode</label>
+                        <input class="zipcode" id="zipcode" name="zipcode" required></input> 
+                    </div>
+                </div>              
             </div>
         </form>
     </div>
