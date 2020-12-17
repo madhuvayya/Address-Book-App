@@ -17,7 +17,7 @@
         </div>
     </header>
     <div id="formId" class="form-content">
-        <form class="form" action="#">
+        <form class="form" action="#" onreset="resetForm()" onsubmit="save(event)">
             <div class="form-header">
                 <div class="form-header-text">Person Address Form</div>
                 <a class="cancel-button"><img src="../assets/images/cancel.jpeg" alt="logo"></a>
@@ -57,7 +57,13 @@
                         <label class="label text" for="zipcode">Zipcode</label>
                         <input class="zipcode" id="zipcode" name="zipcode" required></input> 
                     </div>
-                </div>              
+                </div>
+                <div class="buttonParent">
+                    <div class="submit-reset">
+                        <button type="submit" class="button submitButton" id="submitButton">Add</button>
+                        <button type="reset" class="button resetButton">Reset</button>        
+                    </div>
+                </div>               
             </div>
         </form>
     </div>
