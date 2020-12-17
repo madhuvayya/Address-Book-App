@@ -1,5 +1,10 @@
 class Contact {
 
+    get id() { return this._id }
+    set id(id) {
+        this._id = id;
+    }
+
     get fullName() { return this._fullName }
     set fullName(fullName) {
         let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
