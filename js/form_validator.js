@@ -1,60 +1,66 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    const name = document.querySelector('#name');
-    const textError = document.querySelector('.text-error');    
-    const nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
-    name.addEventListener('input', function() {
-        if(name.value == "" | nameRegex.test(name.value)) {
-            textError.textContent = '';
-        } else {
-            textError.textContent = 'Entered invalid name.';
-        } 
+    const fullName = document.querySelector('#full-name');
+    fullName.addEventListener('input', function() {
+        if(fullName.value.length == 0) {
+            setTextValue('.text-error', "");
+            return;
+        }
+        try {
+            (new Contact()).fullName = fullName.value;;
+            setTextValue('.text-error', "");
+        } catch (e) {
+            setTextValue('.text-error', e);
+        }
     });
 
     const phoneNumber = document.querySelector("#phone-number");
-    const phoneNumberRegex = RegExp('^([+])?(91)?[6-9]{1}[0-9]{9}$');
     phoneNumber.addEventListener('input', function() {
-        if(phoneNumber.value == "" | phoneNumberRegex.test(phoneNumber.value)) {
-            textError.textContent = '';
-        } else {
-            textError.textContent = 'Entered invalid phone number.';
-        } 
+        if(phoneNumber.value == "") {
+            setTextValue('.text-error', "");
+            return;
+        }
+        try {
+            (new Contact()).phoneNumber = phoneNumber.value;;
+            setTextValue('.text-error', "");
+        } catch (e) {
+            setTextValue('.text-error', e);
+        }
     });
 
     const address = document.querySelector("#address");
-    const addressRegex = RegExp('^.{3,}$');
     address.addEventListener('input', function() {
-        var addressArray = address.value.split(",");
-        let validWords = 0;
-        addressArray.forEach( word => {
-            if(addressRegex.test(word)){
-                validWords++;
-            }
-        });
-        if(address.value == "" | addressArray.length == validWords) {
-            textError.textContent = '';
-        } else {
-            console.log(addressArray+" "+ addressArray.length+" valid words:"+ validWords);
-            textError.textContent = 'Entered proper address';
-        } 
+        if(address.value == "") {
+            setTextValue('.text-error', "");
+        }
+        try {
+            (new Contact()).address = address.value;;
+            setTextValue('.text-error', "");
+        } catch (e) {
+            setTextValue('.text-error', e);
+        }
     });
 })
 
 const save = (event) => {
-    createContact();
+    setContactObject();
 }
 
-const createContact = () => {
-    const Contact = {
-        "name" : getInputValueById("#name"),
-        "phoneNumber" : getInputValueById("#phone-number"),
-        "address" : getInputValueById("#address"),
-        "city" : getInputValueById("#city"),
-        "state" : getInputValueById("#state"),
-        "zipcode" : getInputValueById("#zipcode")
-    }
-    alert(JSON.stringify(Contact));
+const setContactObject = () => {
+    let contact = new Contact();
+    contact.fullName = getInputValueById("#full-name"),
+    contact.phoneNumber = getInputValueById("#phone-number"),
+    contact.address = getInputValueById("#address"),
+    contact.city = getInputValueById("#city"),
+    contact.state = getInputValueById("#state"),
+    contact.zipcode = getInputValueById("#zipcode")
+    alert(contact.toString());
 }
 
 const getInputValueById = (id) => {
     return document.querySelector(id).value;
+}
+
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
 }
