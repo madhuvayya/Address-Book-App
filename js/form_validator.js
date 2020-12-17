@@ -38,3 +38,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         } 
     });
 })
+
+const save = (event) => {
+    createContact();
+}
+
+const createContact = () => {
+    const Contact = {
+        "name" : document.querySelector("#name").value,
+        "phoneNumber" : document.querySelector("#phone-number").value,
+        "address" : document.querySelector("#address").value,
+        "city" : document.querySelector("#city").value,
+        "state" : document.querySelector("#state").value,
+        "zipcode" : document.querySelector("#zipcode").value
+    }
+    alert(JSON.stringify(Contact));
+}
