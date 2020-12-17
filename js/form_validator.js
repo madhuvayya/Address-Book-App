@@ -45,12 +45,16 @@ const save = (event) => {
 
 const createContact = () => {
     const Contact = {
-        "name" : document.querySelector("#name").value,
-        "phoneNumber" : document.querySelector("#phone-number").value,
-        "address" : document.querySelector("#address").value,
-        "city" : document.querySelector("#city").value,
-        "state" : document.querySelector("#state").value,
-        "zipcode" : document.querySelector("#zipcode").value
+        "name" : getInputValueById("#name"),
+        "phoneNumber" : getInputValueById("#phone-number"),
+        "address" : getInputValueById("#address"),
+        "city" : getInputValueById("#city"),
+        "state" : getInputValueById("#state"),
+        "zipcode" : getInputValueById("#zipcode")
     }
     alert(JSON.stringify(Contact));
+}
+
+const getInputValueById = (id) => {
+    return document.querySelector(id).value;
 }
