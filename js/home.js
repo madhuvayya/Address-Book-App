@@ -28,7 +28,7 @@ const createInnerHtml = () => {
             <td>${contactData._phoneNumber}</td>
             <td>
                 <img name="${contactData._id}" onclick="remove(${contactData._id})" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                <img name="${contactData._id}" alt="edit" src="../assets/icons/create-black-18dp.svg">                    
+                <img name="${contactData._id}" onclick="update(${contactData._id})" alt="edit" src="../assets/icons/create-black-18dp.svg">                    
             </td>
         </tr>`;
     }    
@@ -45,4 +45,11 @@ const remove = (id) => {
     localStorage.setItem("ContactsList",JSON.stringify(contactsList));
     document.querySelector(".contacts-count").textContent = contactsList.length;
     createInnerHtml();                
+}
+
+const update=(id)=>{
+    let contactData = contactsList.find(contact => contact._id == id);
+    if(!contactData) return;
+    localStorage.setItem('editContact' , JSON.stringify(contactData));
+    window.location.replace("../pages/address_form.html");
 }

@@ -1,3 +1,4 @@
+let isUpdate = false;
 let contactObject = {};
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -41,6 +42,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             setTextValue('.text-error', e);
         }
     });
+    checkForUpdate();    
 })
 
 const save = (event) => {
@@ -149,4 +151,21 @@ const setValue = (id, value) => {
 const setSelectedIndex = (id, index) => {
     const element = document.querySelector(id);
     element.selectedIndex = index;
+}
+
+const checkForUpdate = () =>  {
+    const contactJson = localStorage.getItem('editContact');
+    isUpdate = contactJson ? true : false;
+    if (!isUpdate) return;
+    contactObject = JSON.parse(contactJson);
+    setForm();  
+}
+
+const setForm = () => {
+    setValue('#full-name', contactObject._fullName);
+    setValue('#phone-number', contactObject._phoneNumber);
+    setValue('#address', contactObject._address);
+    setValue('#city', contactObject._city);
+    setValue('#state', contactObject._state);
+    setValue('#zipcode', contactObject._zipcode);    
 }
