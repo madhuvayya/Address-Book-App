@@ -142,3 +142,46 @@ error-output {
 .submitButton:hover {
     background-color: #008CFF;
 }
+
+@media only screen and (max-width: 960px) {
+    .cancelButton{
+        margin-left: 0px;
+    }
+    .form {
+        width: 85%;
+        padding: 44px 20px;
+    }
+    .city-state-zipcode {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .form {
+        margin-top: 10px;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .uploadButton {
+        justify-content: flex-start;
+    }
+    .profile-radio-content {
+        flex-flow: wrap;
+    }
+    .submitButton {
+        width: 100%;
+        flex-grow: 1;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .submitButton {
+        margin-bottom: 10px;
+    }
+    .buttonParent {
+        text-align: center;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
