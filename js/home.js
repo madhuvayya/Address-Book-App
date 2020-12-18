@@ -6,8 +6,10 @@ const createInnerHtml = () => {
     const headerHtml = "<tr><th>Fullname</th><th>Address</th><th>City</th><th>State</th>"
     + "<th>Zip code</th><th>Phone Number</th><th></th></tr>";
 
-    let contactData = createContactsJson()[0]; 
-    const innerHtml = `${headerHtml}
+    let contactDataList = createContactsJson();
+    let innerHtml = `${headerHtml}`;
+    for(const contactData of contactDataList) {   
+         innerHtml = `${innerHtml}
         <tr>
             <td>${contactData._fullName}</td>
             <td>${contactData._address}</td>
@@ -20,6 +22,7 @@ const createInnerHtml = () => {
                 <img id="1" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">                    
             </td>
         </tr>`;
+    }    
     document.querySelector('#display').innerHTML = innerHtml;        
 }
 
