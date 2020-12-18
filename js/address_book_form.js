@@ -46,12 +46,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 })
 
 const save = (event) => {
-    setContactObject();
-    createAndStore();
+    event.preventDefault();
+    event.stopPropagation();
+    try {
+        setContactObject();
+        createAndStore();
+        resetForm();
+        window.location.replace("../pages/home.html")
+    } catch (error) {
+        return;
+    }
 }
 
 const setContactObject = () => {
-    contactObject._id = createContactId();
     contactObject._fullName = getInputValueById("#full-name"),
     contactObject._phoneNumber = getInputValueById("#phone-number"),
     contactObject._address = getInputValueById("#address"),
