@@ -130,7 +130,6 @@ const setContactData = (contactData) => {
     contactData.city = contactObject._city;
     contactData.state = contactObject._state;
     contactData.zipcode = contactObject._zipcode;
-    contactData.id = contactObject._id;
     alert(contactData.toString());
 }
 
@@ -163,9 +162,11 @@ const setSelectedIndex = (id, index) => {
 const checkForUpdate = () =>  {
     const contactJson = localStorage.getItem('editContact');
     isUpdate = contactJson ? true : false;
-    if (!isUpdate) return;
+    if (!isUpdate) 
+        return;
     contactObject = JSON.parse(contactJson);
-    setForm();  
+    setForm();
+    localStorage.removeItem('editContact');  
 }
 
 const setForm = () => {
