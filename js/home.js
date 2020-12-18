@@ -1,14 +1,23 @@
+let contactsList;
+
 window.addEventListener('DOMContentLoaded', (event) => {
+    contactsList = getContactsDataFromStorage();
+    document.querySelector(".contacts-count").textContent = contactsList.length; 
     createInnerHtml();
 });
+
+const getContactsDataFromStorage = () => {
+    return localStorage.getItem('ContactsList') ? 
+                JSON.parse(localStorage.getItem('ContactsList')) : [];
+} 
+
 
 const createInnerHtml = () => {
     const headerHtml = "<tr><th>Fullname</th><th>Address</th><th>City</th><th>State</th>"
     + "<th>Zip code</th><th>Phone Number</th><th></th></tr>";
 
-    let contactDataList = createContactsJson();
     let innerHtml = `${headerHtml}`;
-    for(const contactData of contactDataList) {   
+    for(const contactData of contactsList) {   
          innerHtml = `${innerHtml}
         <tr>
             <td>${contactData._fullName}</td>
@@ -18,32 +27,10 @@ const createInnerHtml = () => {
             <td>${contactData._zipcode}</td>
             <td>${contactData._phoneNumber}</td>
             <td>
-                <img id="1" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                <img id="1" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">                    
+                <img name="${contactData._id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+                <img name="${contactData._id}" alt="edit" src="../assets/icons/create-black-18dp.svg">                    
             </td>
         </tr>`;
     }    
     document.querySelector('#display').innerHTML = innerHtml;        
-}
-
-const createContactsJson = () => {
-    let contactsListLocal = [
-        {
-            _fullName: 'Madhu Vayya',
-            _phoneNumber: 7777777777,
-            _address: 'Subhashchandrabose nagar,Kukatpally',
-            _city: 'Hyderabad',
-            _state: 'Telangana',
-            _zipcode: '500072'
-        },
-        {
-            _fullName: 'Rajesh',
-            _phoneNumber: 7777777778,
-            _address: 'Nehru nagar',
-            _city: 'Warangal',
-            _state: 'Telangana',
-            _zipcode: '5045612'  
-        }        
-    ];
-    return contactsListLocal;
 }
